@@ -49,11 +49,8 @@ namespace Curso.WebApplication.Controllers
         }
 
         // POST: Evento/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Gratuito,Descricao,Data")] Evento evento)
+        public async Task<IActionResult> Create(Evento evento)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +82,7 @@ namespace Curso.WebApplication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Gratuito,Descricao,Data")] Evento evento)
+        public async Task<IActionResult> Edit(int id, Evento evento)
         {
             if (id != evento.Id)
             {
