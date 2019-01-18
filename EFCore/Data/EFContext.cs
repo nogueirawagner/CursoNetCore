@@ -16,5 +16,6 @@ namespace EFCore.Data
         }
 
         public DbSet<Evento> Evento { get; set; }
+        public DbSet<Pessoa> Pessoa { get; set; }
     }
 }

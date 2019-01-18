@@ -6,14 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Curso.WebApplication.Models;
+using Curso.WebApplication.Data;
 
 namespace Curso.WebApplication.Controllers
 {
     public class EventoController : Controller
     {
-        private readonly CursoWebApplicationContext _context;
+        private readonly CursoContext _context;
 
-        public EventoController(CursoWebApplicationContext context)
+        public EventoController(CursoContext context)
         {
             _context = context;
         }
