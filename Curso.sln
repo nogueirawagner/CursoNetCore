@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{9F66F4
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Curso.WebApi", "Curso.WebApi\Curso.WebApi.csproj", "{A8A24B67-5835-4B77-B67B-0739402C70C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCore", "EFCore\EFCore.csproj", "{F035C27C-2A4E-475C-B8BD-71D32D2D2903}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore", "EFCore\EFCore.csproj", "{F035C27C-2A4E-475C-B8BD-71D32D2D2903}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

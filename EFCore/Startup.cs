@@ -20,7 +20,7 @@ namespace EFCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<EFContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("LocalConnection")));
+            options.UseSqlServer(Configuration.GetConnectionString("MeuNoteConnection")));
 
             services.AddMvc();
         }
