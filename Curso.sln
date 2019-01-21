@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Curso.WebApi", "Curso.WebAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore", "EFCore\EFCore.csproj", "{F035C27C-2A4E-475C-B8BD-71D32D2D2903}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seguranca", "Seguranca\Seguranca.csproj", "{DD1456AF-FEE1-4EBA-8393-BF45C2A1BA5D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{F035C27C-2A4E-475C-B8BD-71D32D2D2903}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F035C27C-2A4E-475C-B8BD-71D32D2D2903}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F035C27C-2A4E-475C-B8BD-71D32D2D2903}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD1456AF-FEE1-4EBA-8393-BF45C2A1BA5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD1456AF-FEE1-4EBA-8393-BF45C2A1BA5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD1456AF-FEE1-4EBA-8393-BF45C2A1BA5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD1456AF-FEE1-4EBA-8393-BF45C2A1BA5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{FBDE2AD6-4C1E-46D5-BD55-88E6F84284C7} = {199B4525-3106-42DC-A572-23B0DD6968F7}
 		{A8A24B67-5835-4B77-B67B-0739402C70C9} = {9F66F48C-0CDB-4F7A-B767-B0E4BC632E42}
 		{F035C27C-2A4E-475C-B8BD-71D32D2D2903} = {199B4525-3106-42DC-A572-23B0DD6968F7}
+		{DD1456AF-FEE1-4EBA-8393-BF45C2A1BA5D} = {199B4525-3106-42DC-A572-23B0DD6968F7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {65A16D07-BD5A-44E0-89B5-74E9962DF5F0}
