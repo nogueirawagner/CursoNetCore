@@ -19,7 +19,19 @@ namespace EFCore.Controllers
 
         public IActionResult Index()
         {
-            return View(_context.Pessoa.ToList());
+            var evento = new Evento()
+            {
+                Nome = "WAagner",
+                Descricao = "Produto ",
+                Valor = 20
+            };
+
+            ViewData["Evento"] = evento;
+
+            ViewBag.Eventos = evento;
+
+            var pessoas = _context.Pessoa.ToList();
+            return View(pessoas);
         }
 
         [HttpGet]
