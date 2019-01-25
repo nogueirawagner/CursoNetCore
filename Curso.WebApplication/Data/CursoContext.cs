@@ -12,7 +12,6 @@ namespace Curso.WebApplication.Data
         public CursoContext(DbContextOptions<CursoContext> options)
             :base(options)
         {
-            
         }
 
         public DbSet<Evento> Evento { get; set; }
