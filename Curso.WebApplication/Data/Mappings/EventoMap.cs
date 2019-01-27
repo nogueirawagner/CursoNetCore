@@ -1,5 +1,6 @@
 ﻿using Curso.WebApplication.Models;
 using Curso.WebApplication.Models.Extensions;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace Curso.WebApplication.Data.Mappings
     {
         public override void Map(EntityTypeBuilder<Evento> builder)
         {
-            builder.ToTable("")
+            builder.ToTable("A");
 
             throw new NotImplementedException();
         }

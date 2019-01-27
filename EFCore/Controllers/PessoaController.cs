@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using EFCore.Data;
+﻿using EFCore.Data.Context;
 using EFCore.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace EFCore.Controllers
 {
@@ -16,12 +13,12 @@ namespace EFCore.Controllers
         {
             _context = context;
         }
-
+        // 
         public IActionResult Index()
         {
             var evento = new Evento()
             {
-                Nome = "WAagner",
+                Nome = "Wagner",
                 Descricao = "Produto ",
                 Valor = 20
             };

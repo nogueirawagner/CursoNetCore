@@ -9,6 +9,7 @@ namespace EFCore.Models
 {
     public class Evento
     {
+        #region Propriedades do Evento
         [Key]
         public int Id { get; set; }
 
@@ -28,5 +29,12 @@ namespace EFCore.Models
         [DataType(DataType.Currency, ErrorMessage = "Moeda em formato inválido")]
         [Required(ErrorMessage = "Preencha o valor")]
         public decimal Valor { get; set; }
+
+        #endregion 
+
+        public int CategoriaId { get; set; }
+        
+        //Propriedade de navegação
+        public virtual Categoria Categoria { get; set; }
     }
 }
