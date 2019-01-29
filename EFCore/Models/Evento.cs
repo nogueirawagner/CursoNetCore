@@ -33,7 +33,7 @@ namespace EFCore.Models
         #endregion 
 
         public int CategoriaId { get; set; }
-        
+
         //Propriedade de navegação
         public virtual Categoria Categoria { get; set; }
     }

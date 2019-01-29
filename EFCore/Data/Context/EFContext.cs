@@ -42,7 +42,7 @@ namespace EFCore.Data.Context
             modelBuilder.Entity<Evento>()
                 .HasOne(e => e.Categoria)
                 .WithMany(c => c.Eventos)
-                .IsRequired(false);
+                .OnDelete(DeleteBehavior.Cascade);
 
             #endregion Evento
 
@@ -118,24 +118,29 @@ namespace EFCore.Data.Context
             #endregion Pessoa
 
             #region Categoria
+            modelBuilder.Entity<Categoria>()
+                .HasKey(s => s.Id);
 
             modelBuilder.Entity<Categoria>()
-                .HasMany(c => c.Eventos)
-                .WithOne();
+                .Property(s => s.Nome)
+                .HasColumnType("varchar(150");
+
+            //modelBuilder.Entity<Categoria>()
+            //    .HasMany(c => c.Eventos);
 
             #endregion
 
-            #region Blog
+            //#region Blog
 
-            modelBuilder.Entity<Blog>()
-                .HasOne(b => b.Posts)
-                .WithOne(p => p.Blog)
-                .HasForeignKey<Post>(b => b.BlogId);
+            //modelBuilder.Entity<Blog>()
+            //    .HasOne(b => b.Posts)
+            //    .WithOne(p => p.Blog)
+            //    .HasForeignKey<Post>(b => b.BlogId);
 
-            #endregion
+            //#endregion
 
-            #region Post
-            #endregion
+            //#region Post
+            //#endregion
 
             base.OnModelCreating(modelBuilder);
         }

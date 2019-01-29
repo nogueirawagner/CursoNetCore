@@ -4,14 +4,16 @@ using EFCore.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.Migrations
 {
     [DbContext(typeof(EFContext))]
-    partial class EFContextModelSnapshot : ModelSnapshot
+    [Migration("20190129004420_AlterRelacionamento")]
+    partial class AlterRelacionamento
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,7 +126,7 @@ namespace EFCore.Migrations
 
             modelBuilder.Entity("EFCore.Models.Evento", b =>
                 {
-                    b.HasOne("EFCore.Models.Categoria", "Categoria")
+                    b.HasOne("EFCore.Models.Categoria")
                         .WithMany("Eventos")
                         .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade);
