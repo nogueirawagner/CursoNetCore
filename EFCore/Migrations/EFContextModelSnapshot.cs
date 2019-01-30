@@ -124,7 +124,7 @@ namespace EFCore.Migrations
 
             modelBuilder.Entity("EFCore.Models.Evento", b =>
                 {
-                    b.HasOne("EFCore.Models.Categoria", "Categoria")
+                    b.HasOne("EFCore.Models.Categoria")
                         .WithMany("Eventos")
                         .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade);

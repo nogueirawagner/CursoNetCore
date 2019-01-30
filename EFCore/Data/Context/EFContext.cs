@@ -14,6 +14,7 @@ namespace EFCore.Data.Context
         public DbSet<Evento> Evento { get; set; }
         public DbSet<Pessoa> Pessoa { get; set; }
         public DbSet<Endereco> Endereco { get; set; }
+        public DbSet<Categoria> Categoria { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -41,8 +42,7 @@ namespace EFCore.Data.Context
 
             modelBuilder.Entity<Evento>()
                 .HasOne(e => e.Categoria)
-                .WithMany(c => c.Eventos)
-                .OnDelete(DeleteBehavior.Cascade);
+                .WithMany(c => c.Eventos);
 
             #endregion Evento
 
@@ -124,9 +124,6 @@ namespace EFCore.Data.Context
             modelBuilder.Entity<Categoria>()
                 .Property(s => s.Nome)
                 .HasColumnType("varchar(150");
-
-            //modelBuilder.Entity<Categoria>()
-            //    .HasMany(c => c.Eventos);
 
             #endregion
 

@@ -12,6 +12,13 @@ namespace Curso.WebApplication.Controllers
     {
         public IActionResult Index()
         {
+            var carrinho = new Carrinho(20, 50);
+
+            if (carrinho.EhValido)
+            {
+                // qualquer outra coisa .
+            }
+
             return View();
         }
 

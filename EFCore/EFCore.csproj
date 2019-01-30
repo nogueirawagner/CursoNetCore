@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20190129004705_CascadeOn.cs" />
+    <Compile Remove="Migrations\20190129004705_CascadeOn.Designer.cs" />
+    <Compile Remove="Migrations\20190130014254_mapCategoria.cs" />
+    <Compile Remove="Migrations\20190130014254_mapCategoria.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\css\style.css" />
     <Content Remove="wwwroot\less\style.less" />
   </ItemGroup>
