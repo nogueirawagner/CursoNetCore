@@ -10,6 +10,6 @@ namespace EFCore.Models
         public int BlogId { get; set; }
         public string Url { get; set; }
 
-        public Post Posts { get; set; }
+        public Post Post { get; set; }
     }
 }

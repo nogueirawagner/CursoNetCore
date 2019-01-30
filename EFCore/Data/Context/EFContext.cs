@@ -127,17 +127,37 @@ namespace EFCore.Data.Context
 
             #endregion
 
-            //#region Blog
+            #region Blog
+            modelBuilder.Entity<Blog>()
+                .ToTable("Blog");
 
-            //modelBuilder.Entity<Blog>()
-            //    .HasOne(b => b.Posts)
-            //    .WithOne(p => p.Blog)
-            //    .HasForeignKey<Post>(b => b.BlogId);
+            modelBuilder.Entity<Blog>()
+                .HasKey(s => s.BlogId);
 
-            //#endregion
+            modelBuilder.Entity<Blog>()
+                .Property(s => s.Url)
+                .HasColumnName("Url")
+                .HasColumnType("varchar(200)");
 
-            //#region Post
-            //#endregion
+            modelBuilder.Entity<Blog>()
+                .HasOne(b => b.Post)
+                .WithOne(p => p.Blog)
+                .HasForeignKey<Post>(b => b.BlogId);
+
+            #endregion
+
+            #region Post
+            modelBuilder.Entity<Post>()
+                .ToTable("Post");
+
+            modelBuilder.Entity<Post>()
+                .Property(p => p.Titulo)
+                .HasColumnType("varchar(150)");
+
+            modelBuilder.Entity<Post>()
+           .Property(p => p.Conteudo)
+           .HasColumnType("varchar(500)");
+            #endregion
 
             base.OnModelCreating(modelBuilder);
         }
