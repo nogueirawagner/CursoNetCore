@@ -161,5 +161,9 @@ namespace EFCore.Data.Context
 
             base.OnModelCreating(modelBuilder);
         }
+
+        public DbSet<EFCore.Models.Blog> Blog { get; set; }
+
+        public DbSet<EFCore.Models.Post> Post { get; set; }
     }
 }
