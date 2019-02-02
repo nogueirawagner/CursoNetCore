@@ -27,7 +27,8 @@ namespace Seguranca
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("MeuNoteConnection")));
+                options.UseSqlServer
+                (Configuration.GetConnectionString("MeuNoteConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
