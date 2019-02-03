@@ -11,17 +11,26 @@ namespace EFCore.Data.Mappings
         {
             builder.ToTable("Evento");
 
-            builder.HasKey(c => c.Id);
+            builder.HasKey(s => s.Id);
 
-            builder.Property(c => c.Descricao)
-             .HasColumnType("varchar(150)")
-             .IsRequired();
+            builder
+                .Property(s => s.Nome)
+                .HasColumnType("varchar(150)")
+                .IsRequired();
 
-            builder.Property(c => c.Nome)
-                .HasColumnType("varchar(150)");
+            builder
+              .Property(s => s.Descricao)
+              .HasColumnType("varchar(150)")
+              .IsRequired();
 
-            builder.Property(c => c.Valor)
-                 .HasColumnType("decimal");
+            builder
+                .Property(s => s.Valor)
+                .HasColumnType("decimal(15,2)")
+                .IsRequired();
+
+            builder
+                .HasOne(e => e.Categoria)
+                .WithMany(c => c.Eventos);
         }
     }
 }

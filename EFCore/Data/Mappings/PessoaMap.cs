@@ -10,18 +10,28 @@ namespace EFCore.Data.Mappings
         public override void Map(EntityTypeBuilder<Pessoa> builder)
         {
             builder
-            .ToTable("Pessoa");
-
-            builder.HasKey(s => s.Id);
+                .Property(s => s.Id);
 
             builder
-            .Property(e => e.Nome)
-            .HasColumnType("varchar(100)")
-            .IsRequired();
+                .ToTable("Pessoa");
 
             builder
-            .Property(s => s.Sexo)
-            .IsRequired();
+                .Property(s => s.Nome)
+                .HasColumnType("varchar(150)")
+                .IsRequired();
+
+            builder
+                .Property(s => s.CPF)
+                .HasColumnType("varchar(11)")
+                .IsRequired();
+
+            builder
+                .Property(s => s.Idade)
+                .IsRequired();
+
+            builder
+                .Property(s => s.Sexo)
+                .IsRequired();
         }
     }
 }
