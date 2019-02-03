@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Seguranca.Data;
 using Seguranca.Models;
 using Seguranca.Services;
+using System;
 
 namespace Seguranca
 {
@@ -34,6 +33,45 @@ namespace Seguranca
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddFacebook(faceOptions =>
+                {
+                    faceOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+                    faceOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+                })
+                .AddGoogle(googleOptions =>
+                {
+                    googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                    googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+                })
+                .AddMicrosoftAccount(microsoftOptions =>
+                {
+                    microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ApplicationId"];
+                    microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:Password"];
+                })
+                .AddTwitter(twitterOptions =>
+                {
+                    twitterOptions.ConsumerKey = Configuration["Authentication:Twitter:ConsumerKey"];
+                    twitterOptions.ConsumerSecret = Configuration["Authentication:Twitter:ConsumerSecret"];
+                });
+
+            services.Configure<IdentityOptions>(options => 
+            {
+                // Configuraçoes de senha
+                options.Password.RequireDigit = true; // Requer digíto?
+                options.Password.RequiredLength = 8; // Qual o tamanho mínimo?
+                options.Password.RequireNonAlphanumeric = false; // Requer caractere especial?
+                options.Password.RequireUppercase = false; // Requer letra maiúscula?
+                options.Password.RequireLowercase = false; // Requer letra minúscula?
+
+                // Configuraçoes de bloqueio
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30); // Tempo de bloqueio.
+                options.Lockout.MaxFailedAccessAttempts = 5; // Tentativas máximas de senha incorreta.
+
+                // Configuraçoes do usuario
+                options.User.RequireUniqueEmail = true; // Requer e-mail único?
+            });
+
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
@@ -55,7 +93,6 @@ namespace Seguranca
             }
 
             app.UseStaticFiles();
-
             app.UseAuthentication();
 
             app.UseMvc(routes =>
