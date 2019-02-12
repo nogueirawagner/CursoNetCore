@@ -22,12 +22,14 @@ namespace Seguranca.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
+            RoleManager<IdentityRole> roleManager,
             IEmailSender emailSender,
             ILogger<AccountController> logger)
         {
@@ -35,6 +37,7 @@ namespace Seguranca.Controllers
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _roleManager = roleManager;
         }
 
         [TempData]
@@ -216,11 +219,23 @@ namespace Seguranca.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
+                var anyClienteRole = await _roleManager.RoleExistsAsync("Usuario");
+                if (!anyClienteRole)
+                {
+                    await _roleManager.CreateAsync(new IdentityRole("Usuario"));
+                }
+
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+
+                    // Add claim in new user
+                    await _userManager.AddClaimAsync(user, new Claim("HomeClaim", "AcessoHome"));
+                   
+                    // Add roles in new user
+                    await _userManager.AddToRoleAsync(user, "Usuario");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
@@ -228,6 +243,7 @@ namespace Seguranca.Controllers
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation("User created a new account with password.");
+                  
                     return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);

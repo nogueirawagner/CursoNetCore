@@ -18,8 +18,7 @@ namespace Seguranca.Controllers
             return View();
         }
         
-        [Authorize(Roles = "Admin")]
-        [Authorize(Roles = "User")]
+        [Authorize(Policy = "AcessoHome")]
         public IActionResult About()
         {
             ViewData["Message"] = 

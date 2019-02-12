@@ -4,11 +4,11 @@ using System.Text;
 
 namespace ConsoleApp
 {
-    public static class ExtensionMethods
+    public static class ConsoleExtension
     {
-        public static int ContadorPalavras(this String str)
+        public static int ContadorConsole(this int c, int b)
         {
-            return 2;
+            return b + 2;
         }
     }
 }
