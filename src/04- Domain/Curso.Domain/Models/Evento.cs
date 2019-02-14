@@ -56,7 +56,7 @@ namespace Curso.Domain.Models
             if (Gratuito)
                 RuleFor(c => c.Valor)
                     .Equal(0).When(e => e.Gratuito)
-                    .WithMessage("O valor não ser deve diferente de 0 para um evento gratuito");
+                    .WithMessage("O valor não deve ser diferente de 0 para evento gratuito");
         }
 
         private void ValidarData()

@@ -13,7 +13,7 @@ namespace Curso.Testes
             var evento = new Evento();
             evento.Nome = "j";
 
-            Assert.AreEqual(evento.EhValido(), true);
+            Assert.AreEqual(evento.EhValido(), false);
         }
     }
 }
