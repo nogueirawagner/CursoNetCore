@@ -5,8 +5,8 @@ namespace Curso.Infra.Identity.Models.AccountViewModels
   public class RegisterViewModel
   {
     [Required(ErrorMessage = "O Email deve ser informado.")]
-    [DataType(DataType.EmailAddress, ErrorMessage ="E-mail em formato inválido")]
     [Display(Name = "Email")]
+    [EmailAddress(ErrorMessage = "E-mail em formato inválido")]
     public string Email { get; set; }
 
     [Required(ErrorMessage = "A senha deve ser informada.")]

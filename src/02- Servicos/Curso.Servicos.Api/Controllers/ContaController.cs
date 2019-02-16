@@ -44,9 +44,9 @@ namespace Exs.Api.Controllers
     [Route("nova-conta")]
     public async Task<IActionResult> Register([FromBody]RegisterViewModel model)
     {
-      if (!ModelState.IsValid) return BadRequest();
+      if (!ModelState.IsValid) return Response(false, erros: PegarErrosModelInvalida());
 
-      var user = new ApplicationUser { Id = Guid.NewGuid().ToString(), Email = model.Email };
+      var user = new ApplicationUser { Id = Guid.NewGuid().ToString(), UserName = model.Email, Email = model.Email };
       var result = await _userManager.CreateAsync(user, model.Senha);
 
       if (!result.Succeeded)
@@ -64,7 +64,7 @@ namespace Exs.Api.Controllers
 
     [HttpPost]
     [AllowAnonymous]
-    [Route("conta")]
+    [Route("login")]
     public async Task<IActionResult> Login([FromBody]LoginViewModel model)
     {
       if (!ModelState.IsValid) return BadRequest(model);
@@ -125,7 +125,7 @@ namespace Exs.Api.Controllers
           user = new
           {
             id = user.Id,
-            cpf = user.UserName,
+            email = user.UserName,
             claims = userClaims.Select(c => new { c.Type, c.Value }),
             roles = userRoles
           }

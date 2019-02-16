@@ -3,6 +3,7 @@ using Curso.Application.Interfaces;
 using Curso.Application.Services;
 using Curso.Domain.Interfaces;
 using Curso.Domain.IRepositories;
+using Curso.Infra.Data.Context;
 using Curso.Infra.Data.Repository;
 using Curso.Infra.Identity.Models;
 using Microsoft.AspNetCore.Http;
@@ -24,7 +25,7 @@ namespace Curso.Data.IoC
       services.AddScoped<IEventoRepository, EventoRepository>();
 
       // Infra - Data
-      services.AddScoped<DbContext>();
+      services.AddScoped<ContextDb>();
 
       // Infra - Identity
       services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

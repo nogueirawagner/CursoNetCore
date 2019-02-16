@@ -1,6 +1,8 @@
 ﻿using Curso.Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Curso.Servicos.Api.Controllers
 {
@@ -15,6 +17,17 @@ namespace Curso.Servicos.Api.Controllers
       {
         UsuarioId = user.GetUserId();
       }
+    }
+    protected List<string> PegarErrosModelInvalida()
+    {
+      var errosReturn = new List<string>();
+      var erros = ModelState.Values.SelectMany(s => s.Errors);
+      foreach (var erro in erros)
+      {
+        errosReturn.Add(erro.ErrorMessage);
+      }
+
+      return errosReturn;
     }
 
     protected new IActionResult Response(bool success, object result = null, object erros = null)

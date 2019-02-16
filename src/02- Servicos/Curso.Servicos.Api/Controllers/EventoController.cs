@@ -15,7 +15,8 @@ namespace Curso.Servicos.Api.Controllers
     public EventoController(
       IUser user,
       IEventoServices eventoServices
-      ):base(user)
+      )
+      :base(user)
     {
       _user = user;
       _eventoServices = eventoServices;
@@ -23,9 +24,10 @@ namespace Curso.Servicos.Api.Controllers
 
     [Route("adicionar")]
     [HttpPost]
+    [Authorize]
     public IActionResult Adicionar([FromBody] EventoViewModel pEvento)
     {
-      if (!ModelState.IsValid) return Response(false, pEvento);
+      if (!ModelState.IsValid) return Response(false, erros: PegarErrosModelInvalida());
 
       var evento = _eventoServices.Adicionar(pEvento);
       if(evento.Sucesso)
