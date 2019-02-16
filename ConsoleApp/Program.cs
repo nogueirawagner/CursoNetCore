@@ -9,6 +9,12 @@ namespace ConsoleApp
             int idade = 20;
             idade.ContadorConsole(3);
             Console.WriteLine("A quantidade é {0}", s.ContadorPalavras());
+
+            var monza = new Carro();
+            monza.Marca = "chevrolet";
+
+            var c = new Carro();
+            c.Adicionar(monza);
         }
     }
 }

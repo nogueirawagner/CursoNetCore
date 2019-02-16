@@ -1,11 +1,18 @@
-﻿using System;
+﻿using Core.Application.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace Curso.Application.Interfaces
 {
     public interface IEventoServices
     {
-        
+        void Adicionar(EventoViewModel eventoViewModel);
+        void Atualizar(EventoViewModel eventoViewModel);
+        EventoViewModel PegarPorId(Guid id);
+        IEnumerable<EventoViewModel> PegarTodos();
+        void Remover(Guid id);
+        void Remover(List<Guid> ids);
     }
 }

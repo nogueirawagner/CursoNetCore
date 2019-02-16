@@ -8,6 +8,5 @@ namespace Curso.Domain.IRepositories
 {
     public interface IEventoRepository : IRepository<Evento>
     {
-
     }
 }

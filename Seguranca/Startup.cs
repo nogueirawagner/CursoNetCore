@@ -89,6 +89,7 @@ namespace Seguranca
                 options.AddPolicy("AcessoManage", policy => policy.RequireClaim("ManageClaim"));
             });
             #region 
+
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 

@@ -12,6 +12,7 @@ namespace Curso.Infra.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.AddConfiguration(new EventoMap());
+
             base.OnModelCreating(modelBuilder);
         }
     }

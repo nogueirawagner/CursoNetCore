@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\src\03- Aplicacao\Curso.Application\Curso.Application.csproj" />
     <ProjectReference Include="..\src\05- Infra\5.1- Data\Curso.Infra.Data\Curso.Infra.Data.csproj" />
   </ItemGroup>
 
