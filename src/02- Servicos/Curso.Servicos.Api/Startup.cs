@@ -1,15 +1,19 @@
 ﻿using AutoMapper;
 using Curso.Data.IoC;
 using Curso.Infra.Identity.Data;
+using Curso.Infra.Identity.Models;
 using Curso.Infra.Jwt.Authorization;
+using Curso.Servicos.Api.Configurations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 using System;
 
 namespace Curso.Servicos.Api
@@ -36,6 +40,8 @@ namespace Curso.Servicos.Api
               Configuration.GetSection("JwtTokenOptions"))
           .Configure(tokenConfigurations);
 
+
+
       services.AddAuthentication(options =>
       {
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -56,6 +62,29 @@ namespace Curso.Servicos.Api
         paramsValidation.ClockSkew = TimeSpan.Zero;
       });
 
+      services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+      {
+        // REQUERIMENTOS DO PASSWORD
+        options.Password = new PasswordOptions()
+        {
+          RequiredLength = 6,
+          RequireUppercase = false,
+          RequireLowercase = false,
+          RequireNonAlphanumeric = false,
+          RequireDigit = false,
+          RequiredUniqueChars = 1
+        };
+        // VEZES QUE PODE ERRAR A SENHA E QUANTO TEMPO BLOQUEADO
+        options.Lockout = new LockoutOptions()
+        {
+          AllowedForNewUsers = true,
+          DefaultLockoutTimeSpan = TimeSpan.FromMinutes(3),
+          MaxFailedAccessAttempts = 5
+        };
+      })
+      .AddEntityFrameworkStores<IdentityContext>()
+      .AddDefaultTokenProviders();
+
       services.AddAuthorization(options =>
       {
         options.AddPolicy("Clientes", policy => policy.RequireRole("Cliente"));
@@ -68,31 +97,28 @@ namespace Curso.Servicos.Api
       services.AddAutoMapper();
       services.AddSingleton(tokenConfigurations);
 
-      // Configurações do Swagger
-      //services.AddSwaggerGen(s =>
-      //{
-      //  s.SwaggerDoc("v1", new Info
-      //  {
-      //    Version = "v1",
-      //    Title = "Exs API",
-      //    Description = "API do projeto Exs",
-      //    TermsOfService = "Nenhum",
-      //    Contact = new Contact { Name = "API Exs", Email = "nogueirawagner@gmail.com", Url = "http://exs.net.br/" },
-      //    License = new License { Name = "CC BY-NC-ND", Url = "https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode" }
-      //  });
+      //Configurações do Swagger
+     services.AddSwaggerGen(s =>
+     {
+       s.SwaggerDoc("v1", new Info
+       {
+         Version = "v1",
+         Title = "Curso API",
+         Description = "API do projeto",
+         TermsOfService = "Nenhum",
+         Contact = new Contact { Name = "API Curso", Email = "nogueirawagner@gmail.com", Url = "http://curso.net.br/" },
+         License = new License { Name = "CC BY-NC-ND", Url = "https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode" }
+       });
 
-      //  s.OperationFilter<AuthorizationHeaderParameterOperationFilter>();
-      //});
+       s.OperationFilter<AuthorizationHeaderParameterOperationFilter>();
+     });
 
-      //services.ConfigureSwaggerGen(opt =>
-      //{
-      //  opt.OperationFilter<AuthorizationHeaderParameterOperationFilter>();
-      //});
-
-
+      services.ConfigureSwaggerGen(opt =>
+      {
+        opt.OperationFilter<AuthorizationHeaderParameterOperationFilter>();
+      });
 
       services.AddMvc();
-
       RegisterServices(services);
     }
 
@@ -104,7 +130,22 @@ namespace Curso.Servicos.Api
         app.UseDeveloperExceptionPage();
       }
 
+      // Liberar todos acessos
+      app.UseCors(c =>
+      {
+        c.WithOrigins("*").WithExposedHeaders("x-pagination-totalpages");
+        c.AllowAnyHeader();
+        c.AllowAnyMethod();
+        c.AllowAnyOrigin();
+      });
+
+      app.UseStaticFiles();
+      app.UseAuthentication();
       app.UseMvc();
+
+      // Usar Swagger
+      app.UseSwagger();
+      app.UseSwaggerUI(s => { s.SwaggerEndpoint("/swagger/v1/swagger.json", "Exs API v1.0"); });
     }
 
     private static void RegisterServices(IServiceCollection services)

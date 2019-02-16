@@ -19,11 +19,11 @@
     "Curso.Servicos.Api": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/values",
+      "launchUrl": "http://localhost:55623/swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:22027/"
+      "applicationUrl": "http://localhost:55623"
     }
   }
 }
