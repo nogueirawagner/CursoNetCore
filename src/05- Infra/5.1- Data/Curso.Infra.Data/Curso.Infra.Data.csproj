@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -6,8 +6,8 @@
 
   <ItemGroup>
     <PackageReference Include="microsoft.Aspnetcore.all" Version="2.0.5" />
-    <PackageReference Include="microsoft.EntityFrameworkCore" Version="2.0.3" />
-    <PackageReference Include="microsoft.EntityFrameworkCore.Tools" Version="2.0.3">
+    <PackageReference Include="microsoft.EntityFrameworkCore" Version="2.1.8" />
+    <PackageReference Include="microsoft.EntityFrameworkCore.Tools" Version="2.1.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\src\03- Aplicacao\Curso.Application\Curso.Application.csproj" />
     <ProjectReference Include="..\src\05- Infra\5.1- Data\Curso.Infra.Data\Curso.Infra.Data.csproj" />
+    <ProjectReference Include="..\src\05- Infra\5.2- CrossCutting\Curso.Infra.Identity\Curso.Infra.Identity.csproj" />
   </ItemGroup>
 
 </Project>
