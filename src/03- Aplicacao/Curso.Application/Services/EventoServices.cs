@@ -22,7 +22,7 @@ namespace Curso.Application.Services
       _mapper = mapper;
     }
 
-    public void Adicionar(EventoViewModel eventoViewModel)
+    public ResponseService Adicionar(EventoViewModel eventoViewModel)
     {
       // Transforma view model em modelo.
       var evento = _mapper.Map<EventoViewModel, Evento>(eventoViewModel);
@@ -32,7 +32,11 @@ namespace Curso.Application.Services
 
       // Verifica se o modelo é válido.
       if (evento.EhValido())
+      {
         _eventoRepository.SaveChanges(); // Faz commit no banco.
+        return (new ResponseService(true, eventoViewModel));
+      }
+      return (new ResponseService(false, eventoViewModel, evento.ValidationErrors));
     }
 
     public void Atualizar(EventoViewModel eventoViewModel)
