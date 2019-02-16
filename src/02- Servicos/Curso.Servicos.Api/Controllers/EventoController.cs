@@ -26,6 +26,7 @@ namespace Curso.Servicos.Api.Controllers
     public IActionResult Adicionar([FromBody] EventoViewModel pEvento)
     {
       if (!ModelState.IsValid) return Response(false, pEvento);
+
       var evento = _eventoServices.Adicionar(pEvento);
       if(evento.Sucesso)
         return Response(true, evento.Result);
