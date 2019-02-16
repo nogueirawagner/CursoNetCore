@@ -1,4 +1,4 @@
-namespace Exs.Infra.Identity.Authorization
+namespace Curso.Infra.Jwt.Authorization
 {
     public class TokenDescriptor
     {

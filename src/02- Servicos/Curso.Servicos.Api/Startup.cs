@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
 using Curso.Data.IoC;
+using Curso.Infra.Data.Context;
 using Curso.Infra.Identity.Data;
-using Exs.Infra.Identity.Authorization;
+using Curso.Infra.Jwt.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-
 namespace Curso.Servicos.Api
 {
   public class Startup
@@ -37,8 +33,8 @@ namespace Curso.Servicos.Api
               Configuration.GetSection("JwtTokenOptions"))
           .Configure(tokenConfigurations);
 
+      services.AddAutoMapper();
       services.AddSingleton(tokenConfigurations);
-
       services.AddMvc();
 
       RegisterServices(services);

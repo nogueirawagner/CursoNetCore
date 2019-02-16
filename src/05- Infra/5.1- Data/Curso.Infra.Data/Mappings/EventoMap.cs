@@ -5,24 +5,25 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Curso.Infra.Data.Mappings
 {
-    public class EventoMap : EntityTypeConfiguration<Evento>
+  public class EventoMap : EntityTypeConfiguration<Evento>
+  {
+    public override void Map(EntityTypeBuilder<Evento> builder)
     {
-        public override void Map(EntityTypeBuilder<Evento> builder)
-        {
-            builder.ToTable("Evento");
+      builder.ToTable("Evento");
 
-            builder.Property(e => e.Nome)
-           .HasColumnType("varchar(150)")
-           .IsRequired();
+      builder.Property(e => e.Nome)
+     .HasColumnType("varchar(150)")
+     .IsRequired();
 
-            builder.Property(e => e.Descricao)
-            .HasColumnType("varchar(150)");
+      builder.Property(e => e.Descricao)
+      .HasColumnType("varchar(150)");
 
-            builder.Property(e => e.Gratuito)
-            .IsRequired();
+      builder.Property(e => e.Gratuito)
+      .IsRequired();
 
-            builder.Ignore(e => e.ValidationResult);
-            builder.Ignore(e => e.CascadeMode);
-        }
+      builder.Ignore(e => e.ValidationResult);
+      builder.Ignore(e => e.CascadeMode);
+      builder.Ignore(e => e.ValidationErrors);
     }
+  }
 }

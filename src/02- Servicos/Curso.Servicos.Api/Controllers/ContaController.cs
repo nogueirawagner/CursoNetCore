@@ -3,7 +3,6 @@ using Curso.Infra.Identity.Models;
 using Curso.Infra.Identity.Models.AccountViewModels;
 using Curso.Infra.Jwt.Authorization;
 using Curso.Servicos.Api.Controllers;
-using Exs.Infra.Identity.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Curso.Application.Interfaces;
+using Curso.Application.Services;
 using Curso.Domain.Interfaces;
 using Curso.Domain.IRepositories;
 using Curso.Infra.Data.Repository;
@@ -7,7 +8,6 @@ using Curso.Infra.Identity.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace Curso.Data.IoC
 {
@@ -18,7 +18,7 @@ namespace Curso.Data.IoC
       // Application
       services.AddSingleton(Mapper.Configuration);
       services.AddScoped<IMapper>(s => new Mapper(s.GetRequiredService<IConfigurationProvider>(), s.GetServices));
-      services.AddScoped<IEventoServices, IEventoServices>();
+      services.AddScoped<IEventoServices, EventoServices>();
 
       // Infra - Repositories
       services.AddScoped<IEventoRepository, EventoRepository>();
