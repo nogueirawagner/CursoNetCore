@@ -7,11 +7,11 @@ namespace Core.Application.ViewModels
   {
     public EventoViewModel()
     {
-     // Id = Guid.NewGuid();
+      Id = Guid.NewGuid();
     }
 
-    //[Key]
-    //public Guid Id { get; set; }
+    [Key]
+    public Guid Id { get; set; }
 
     [Required(ErrorMessage = "O Nome é requerido")]
     [MinLength(2, ErrorMessage = "O tamanho minimo do Nome é {1}")]
