@@ -25,7 +25,7 @@ namespace Curso.Application.Services
     public ResponseService Adicionar(EventoViewModel eventoViewModel)
     {
       // Transforma view model em modelo.
-      var evento = _mapper.Map<EventoViewModel, Evento>(eventoViewModel);
+      var evento = _mapper.Map<Evento>(eventoViewModel);
 
       // Adiciona o evento.
       _eventoRepository.Adicionar(evento);
@@ -41,7 +41,7 @@ namespace Curso.Application.Services
 
     public void Atualizar(EventoViewModel eventoViewModel)
     {
-      var evento = _mapper.Map<EventoViewModel, Evento>(eventoViewModel);
+      var evento = _mapper.Map<Evento>(eventoViewModel);
       if (evento.EhValido())
       {
         _eventoRepository.Atualizar(evento);

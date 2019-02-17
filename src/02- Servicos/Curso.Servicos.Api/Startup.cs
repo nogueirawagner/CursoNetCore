@@ -94,7 +94,8 @@ namespace Curso.Servicos.Api
                   .RequireAuthenticatedUser().Build());
       });
 
-      services.AddAutoMapper();
+      services.AddAutoMapperSetup();
+
       services.AddSingleton(tokenConfigurations);
 
       //Configurações do Swagger

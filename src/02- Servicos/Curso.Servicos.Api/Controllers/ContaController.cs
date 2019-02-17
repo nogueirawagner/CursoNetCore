@@ -58,6 +58,7 @@ namespace Exs.Api.Controllers
         return Response(false, erros: erros);
       }
 
+      await _signInManager.PasswordSignInAsync(model.Email, model.Senha, false, lockoutOnFailure: true);
       var response = await GerarToken(model.Email);
       return Ok(response);
     }

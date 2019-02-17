@@ -6,10 +6,11 @@ namespace Curso.Application.Services
 {
   public class ResponseService
   {
-    public ResponseService(bool pSucesso, object Result = null, List<string> pErros = null)
+    public ResponseService(bool pSucesso, object pResult = null, List<string> pErros = null)
     {
       Sucesso = pSucesso;
       Erros = pErros;
+      Result = pResult;
     }
 
     public bool Sucesso { get; set; }
