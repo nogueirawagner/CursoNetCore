@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 
 namespace Exs.Api.Controllers
 {
+  [Route("Conta")]
   public class ContaController : BaseController
   {
     private readonly UserManager<ApplicationUser> _userManager;
