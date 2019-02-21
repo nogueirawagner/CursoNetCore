@@ -15,7 +15,15 @@ namespace Curso.Infra.Identity.Models
       _accessor = accessor;
     }
 
-    public string Nome => throw new NotImplementedException();
+    //public string Nome
+    //{
+    //  get
+    //  {
+    //    return _accessor.HttpContext.User.Identity.Name;
+    //  }
+    //}
+
+    public string Nome => _accessor.HttpContext.User.Identity.Name;
 
     public IEnumerable<Claim> GetClaimsIdentity()
     {

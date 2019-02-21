@@ -40,8 +40,6 @@ namespace Curso.Servicos.Api
               Configuration.GetSection("JwtTokenOptions"))
           .Configure(tokenConfigurations);
 
-
-
       services.AddAuthentication(options =>
       {
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

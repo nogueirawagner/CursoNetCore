@@ -44,7 +44,7 @@ namespace Exs.Api.Controllers
     [Route("nova-conta")]
     public async Task<IActionResult> Register([FromBody]RegisterViewModel model)
     {
-      if (!ModelState.IsValid) return Response(false, erros: PegarErrosModelInvalida());
+      if (!ModelState.IsValid) return Response(false, result: model, erros: PegarErrosModelInvalida());
 
       var user = new ApplicationUser { Id = Guid.NewGuid().ToString(), UserName = model.Email, Email = model.Email };
       var result = await _userManager.CreateAsync(user, model.Senha);

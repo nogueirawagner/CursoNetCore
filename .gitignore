@@ -263,3 +263,5 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/src/05- Infra/5.1- Data/Curso.Infra.Data/*.json
+/src/05- Infra/5.2- CrossCutting/Curso.Infra.Identity/appsettings.json
